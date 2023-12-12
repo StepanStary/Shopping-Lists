@@ -1,6 +1,6 @@
 // controllers/listController.js
 const { v4: uuidv4 } = require('uuid');
-const { validateListName, validateItem } = require('../validators/listValidator');
+const { validateListName, validateItem } = require('../validation/listValidator');
 
 let lists = [];
 

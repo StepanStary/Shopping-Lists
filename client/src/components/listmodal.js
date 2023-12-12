@@ -151,7 +151,6 @@ const Button = styled.button`
 `;
 
 const customStyles = {
-  
   content: {
     top: '50%',
     left: '50%',
@@ -160,9 +159,22 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     borderRadius: '10px',
-    maxHeight: '75vh',
     overflowY: 'auto',
-    
+    padding: '20px',  // Přidejte polštáře pro lepší vzhled
+
+    // Přidání media queries pro různé velikosti obrazovky
+    '@media (minWidth: 600px)': {
+      width: '60%',
+    },
+    '@media (minWidth: 768px)': {
+      width: '50%',
+    },
+    '@media (minWidth: 992px)': {
+      width: '40%',
+    },
+    '@media (minWidth: 1200px)': {
+      width: '30%',
+    },
   },
 };
 
@@ -180,6 +192,7 @@ const ModalHeader = styled.div`
     margin: 0;
     color: #777;
   }
+
 `;
 
 const ButtonDel = styled.button`

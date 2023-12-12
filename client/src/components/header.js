@@ -26,17 +26,14 @@ const HeaderContainer = styled.div`
   text-align: center;
 
   @media (max-width: 600px) {
-    /* Styl pro obrazovky s maximální šířkou 600px */
     font-size: 16px;
   }
 
   @media (min-width: 601px) and (max-width: 1024px) {
-    /* Styl pro obrazovky s šířkou mezi 601px a 1024px */
     font-size: 18px;
   }
 
   @media (min-width: 1025px) {
-    /* Styl pro obrazovky s minimální šířkou 1025px */
     font-size: 20px;
   }
 `;
