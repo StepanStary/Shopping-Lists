@@ -11,6 +11,8 @@ i18n
       cs:{
         translation:{
             appname:"Nákupní Seznamy",
+            Dark:"tmavého",
+            Light:"světlého",
             ChoseLanguage:"Vyberte jazyk:",
             SelectProfile:"Prosím, vyberte si profil.",
             welcome: "Vítejte,",
@@ -31,6 +33,8 @@ i18n
       en:{
         translation:{
           appname: "Shopping Lists",
+          Dark:"dark",
+          Light:"light",
           ChoseLanguage:"Select language:",
           welcome: "Welcome,",
           SelectProfile: "Please select a profile",

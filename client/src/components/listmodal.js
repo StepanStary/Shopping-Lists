@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import darkMode from './darkmode';
 
-const ListModal = ({ isOpen, onRequestClose, listName, owner, listId }) => {
+const ListModal = ({ isOpen, onRequestClose, listName, owner, listId,darkMode }) => {
   const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState('');
   const { t } = useTranslation();
@@ -77,11 +78,21 @@ const ListModal = ({ isOpen, onRequestClose, listName, owner, listId }) => {
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="List Modal"
-      style={customStyles}
+      style={{
+        ...customStyles,
+        content: {
+          ...customStyles.content,
+          backgroundColor: darkMode ? '#333' : '#fff',
+        },
+        overlay: {
+          ...customStyles.overlay,
+          backgroundColor: darkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)',
+        },
+      }}
     >
       <ModalHeader>
-        <h2>{listName}</h2>
-        <p>{t('createdBy')}{owner}</p>
+      <h2 style={{ color: darkMode ? '#fff' : '#000' }}>{listName}</h2>
+        <p style={{ color: darkMode ? '#777' : '#000' }}>{t('createdBy')} {owner}</p>
       </ModalHeader>
       <ItemList>
         {items.map((item) => (
@@ -138,6 +149,7 @@ const Button = styled.button`
 `;
 
 const customStyles = {
+  
   content: {
     top: '50%',
     left: '50%',
@@ -148,6 +160,7 @@ const customStyles = {
     borderRadius: '10px',
     maxHeight: '75vh',
     overflowY: 'auto',
+    
   },
 };
 
@@ -185,4 +198,5 @@ const NovaPolozka = styled.input`
   margin-right: 5px;
   height: fit-content;
   max-width: 300px;
+  padding: 0.5rem;
 `;

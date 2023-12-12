@@ -1,5 +1,4 @@
 //app.js
-//test git
 import React, { useState } from 'react';
 import Header from './components/header';
 import NameSelector from './components/profil';
@@ -32,7 +31,7 @@ const App = () => {
       <NameSelector onSelectName={handleSelectName} />
       <Header selectedName={selectedName} />
       <LanguageSelector />
-      <SeznamListu selectedName={selectedName} />
+      <SeznamListu selectedName={selectedName} darkMode={darkMode} />
     </div>
   );
 };

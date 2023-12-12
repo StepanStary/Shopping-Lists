@@ -8,7 +8,7 @@ const DarkModeToggle = ({ darkMode, toggleDarkMode }) => {
   const { t } = useTranslation();
   return (
     <Button onClick={toggleDarkMode}>
-      {t('toggleText', { mode: darkMode ? 'Dark' : 'Light' })}
+      {t('toggleText', { mode: darkMode ? t('Light') : t('Dark') })}
     </Button>
   );
 };
@@ -16,7 +16,7 @@ const DarkModeToggle = ({ darkMode, toggleDarkMode }) => {
 export default DarkModeToggle;
 
   const Button = styled.button`
-    position: fixed;
+    position: absolute;
     top: 15px;
     right: 10px;
     border-radius: 5px;

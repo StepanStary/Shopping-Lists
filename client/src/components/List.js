@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ListModal from './listmodal';
 import { useTranslation } from 'react-i18next';
 
-const List = ({ listName, selectedName, owner, onUpdateListName, onDeleteList, listId }) => {
+const List = ({ listName, selectedName, owner, onUpdateListName, onDeleteList, listId,darkMode }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const { t } = useTranslation();
   
@@ -42,7 +42,7 @@ const List = ({ listName, selectedName, owner, onUpdateListName, onDeleteList, l
   return (
     <ListContainer>
       <h2>{listName}</h2>
-      <h4>{t('createdBy')}{owner}</h4>
+      <h4>{t('createdBy')} {owner}</h4>
       <Button onClick={handleOpenModal}>{t('openDetails')}</Button>
       <Button onClick={handleChangeListName}>{t('changeListName')}</Button>
       <ButtonDel onClick={handleDeleteList}>{t('deleteList')}</ButtonDel>
@@ -51,6 +51,7 @@ const List = ({ listName, selectedName, owner, onUpdateListName, onDeleteList, l
         onRequestClose={handleCloseModal}
         listName={listName}
         owner={owner}
+        darkMode={darkMode}
         listId={listId}
         onUpdateListName={onUpdateListName}
         onDeleteList={onDeleteList}
@@ -65,6 +66,8 @@ const List = ({ listName, selectedName, owner, onUpdateListName, onDeleteList, l
 export default List;
 
   const ListContainer = styled.div`
+    display: flex;
+    flex-direction: column;
     border-radius: 15px;
     border: 1px solid #3498db;
     padding: 1rem;
