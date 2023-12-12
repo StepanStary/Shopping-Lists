@@ -26,7 +26,7 @@ const LanguageSelector = () => {
 };
 
 const LanguageSelect = styled.div`
-  position: fixed;
+  position: absolute;
   top: 50px;
   left: 10px;
 `

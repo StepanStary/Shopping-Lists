@@ -37,7 +37,7 @@ const NameSelector = ({ onSelectName }) => {
 export default NameSelector;
 
 const Profil = styled.div`
-  position: fixed;
+  position: absolute;
   top: 15px;
   left: 10px;
 `;

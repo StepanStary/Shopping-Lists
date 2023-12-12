@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import darkMode from './darkmode';
 
 const ListModal = ({ isOpen, onRequestClose, listName, owner, listId,darkMode }) => {
   const [items, setItems] = useState([]);
@@ -47,7 +46,6 @@ const ListModal = ({ isOpen, onRequestClose, listName, owner, listId,darkMode })
         if (!response.ok) {
           throw new Error('Chyba při přidávání položky');
         }
-
         const newItemData = await response.json();
         setItems([...items, newItemData]);
         setNewItem('');
@@ -108,6 +106,10 @@ const ListModal = ({ isOpen, onRequestClose, listName, owner, listId,darkMode })
           value={newItem}
           onChange={handleInputChange}
           placeholder={t('addItem')}
+          required  // Pole je povinné
+          minLength={1}  // Minimální délka
+          maxLength={80}  // Maximální délka
+          pattern="[a-zA-Z0-9\s]+"
         />
         <Button onClick={handleAddItem}>{t('addItem')}</Button>
       </div>

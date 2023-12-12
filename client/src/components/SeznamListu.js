@@ -52,7 +52,6 @@ const SeznamListu = ({ selectedName, darkMode }) => {
           if (!response.ok) {
             throw new Error('Chyba při vytváření nového seznamu');
           }
-
           const newList = await response.json();
           setSeznamy([...seznamy, newList]);
           setNovySeznam('');
@@ -115,6 +114,10 @@ const SeznamListu = ({ selectedName, darkMode }) => {
             value={novySeznam}
             onChange={handleInputChange}
             placeholder={t('newList')}
+            required  // Pole je povinné
+            minLength={1}  // Minimální délka
+            maxLength={20}  // Maximální délka
+            pattern="[a-zA-Z0-9\s]+"
           />
         <AddListButton onClick={handleAddSeznam}>{t('addList')}</AddListButton>
           </AddList>
