@@ -90,7 +90,7 @@ const ListModal = ({ isOpen, onRequestClose, listName, owner, listId,darkMode })
     >
       <ModalHeader>
       <h2 style={{ color: darkMode ? '#fff' : '#000' }}>{listName}</h2>
-        <p style={{ color: darkMode ? '#777' : '#000' }}>{t('createdBy')} {owner}</p>
+        <p style={{ color: darkMode ? '#fff' : '#000' }}>{t('createdBy')}{owner}</p>
       </ModalHeader>
       <ItemList>
         {items.map((item) => (
