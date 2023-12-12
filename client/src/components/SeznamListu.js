@@ -114,9 +114,9 @@ const SeznamListu = ({ selectedName, darkMode }) => {
             value={novySeznam}
             onChange={handleInputChange}
             placeholder={t('newList')}
-            required  // Pole je povinné
-            minLength={1}  // Minimální délka
-            maxLength={20}  // Maximální délka
+            aria-required
+            minLength={1}
+            maxLength={20} 
             pattern="[a-zA-Z0-9\s]+"
           />
         <AddListButton onClick={handleAddSeznam}>{t('addList')}</AddListButton>

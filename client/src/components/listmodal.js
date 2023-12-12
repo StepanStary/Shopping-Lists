@@ -106,9 +106,9 @@ const ListModal = ({ isOpen, onRequestClose, listName, owner, listId,darkMode })
           value={newItem}
           onChange={handleInputChange}
           placeholder={t('addItem')}
-          required  // Pole je povinné
-          minLength={1}  // Minimální délka
-          maxLength={80}  // Maximální délka
+          required
+          minLength={1}
+          maxLength={80}
           pattern="[a-zA-Z0-9\s]+"
         />
         <Button onClick={handleAddItem}>{t('addItem')}</Button>
