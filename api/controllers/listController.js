@@ -2,7 +2,10 @@
 const { v4: uuidv4 } = require('uuid');
 const { validateListName, validateItem } = require('../validation/listValidator');
 
-let lists = [];
+let lists = [
+  { _id: '1', name: 'List 1', items: [] },
+  { _id: '2', name: 'List 2', items: [] },
+];
 
 // Získání všech seznamů
 const getAllLists = (req, res) => {
@@ -12,7 +15,6 @@ const getAllLists = (req, res) => {
 // Vytvoření nového seznamu
 const createList = (req, res) => {
   const newListData = req.body;
-
   if (!validateListName(newListData.name)) {
     return res.status(400).json({ error: 'Invalid list name' });
   }
