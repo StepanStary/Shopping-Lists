@@ -11,7 +11,7 @@ const LanguageSelector = () => {
 
   return (
     <LanguageSelect>
-      <TextPr htmlFor="languageSelect">{t('ChoseLanguage')}</TextPr>
+      <p htmlFor="languageSelect">{t('ChoseLanguage')}</p>
       <Select
         id="languageSelect"
         onChange={(e) => changeLanguage(e.target.value)}
@@ -26,17 +26,12 @@ const LanguageSelector = () => {
 };
 
 const LanguageSelect = styled.div`
-  position: absolute;
-  top: 50px;
-  left: 10px;
+
 `
 
-const TextPr = styled.label`
-  color: #ffffff;
-`;
 
 const Select = styled.select`
-margin-left: 10px;
-
+  padding: 1rem;
+  border-radius: 10px;
 `
 export default LanguageSelector;

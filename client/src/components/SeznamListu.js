@@ -36,7 +36,7 @@ const SeznamListu = ({ selectedName, darkMode }) => {
   };
 
   const handleAddSeznam = async () => {
-    if(selectedName === 'VyberProfil' || ''){
+    if (selectedName === 'VyberProfil' || '') {
       alert('Zvolte profil, než budete vytvářet seznam.');
     } else {
       try {
@@ -108,37 +108,43 @@ const SeznamListu = ({ selectedName, darkMode }) => {
       {loading && <p>{t('loading')}</p>}
       {!loading && (
         <>
-        <AddList>
-          <ListInput
-            type="text"
-            value={novySeznam}
-            onChange={handleInputChange}
-            placeholder={t('newList')}
-            aria-required
-            minLength={1}
-            maxLength={20} 
-            pattern="[a-zA-Z0-9\s]+"
-          />
-        <AddListButton onClick={handleAddSeznam}>{t('addList')}</AddListButton>
-          </AddList>
-          {seznamy.length > 0 ? (
-            seznamy.map((seznam, index) => (
-              <div className='lists' key={index}>
-                <List
-                  listName={seznam.name}
-                  listId={seznam._id}
-                  owner={seznam.owner}
-                  items={seznam.items}
-                  selectedName={selectedName}
-                  darkMode={darkMode}
-                  onUpdateListName={(newName) => handleUpdateListName(index, newName)}
-                  onDeleteList={() => handleDeleteSeznam(index)}
-                  t={t}
-                />
-              </div>
-            ))
+          {selectedName === 'VyberProfil' ? (
+            <NoProfileSelectedText>{t('selectProfileMessage')}</NoProfileSelectedText>
           ) : (
-            <p>{t('noLists')}</p>
+            <>
+              <AddList>
+                <ListInput
+                  type="text"
+                  value={novySeznam}
+                  onChange={handleInputChange}
+                  placeholder={t('newList')}
+                  aria-required
+                  minLength={1}
+                  maxLength={20} 
+                  pattern="[a-zA-Z0-9\s]+"
+                />
+                <AddListButton onClick={handleAddSeznam}>{t('addList')}</AddListButton>
+              </AddList>
+              {seznamy.length > 0 ? (
+                seznamy.map((seznam, index) => (
+                  <div className='lists' key={index}>
+                    <List
+                      listName={seznam.name}
+                      listId={seznam._id}
+                      owner={seznam.owner}
+                      items={seznam.items}
+                      selectedName={selectedName}
+                      darkMode={darkMode}
+                      onUpdateListName={(newName) => handleUpdateListName(index, newName)}
+                      onDeleteList={() => handleDeleteSeznam(index)}
+                      t={t}
+                    />
+                  </div>
+                ))
+              ) : (
+                <p>{t('noLists')}</p>
+              )}
+            </>
           )}
         </>
       )}
@@ -187,4 +193,12 @@ const ListInput = styled.input`
   border-radius: 5px;
   max-width: 200px;
   padding: 0.5rem;
+`;
+
+const NoProfileSelectedText = styled.p`
+  align-self: center;
+  text-align: center;
+  font-size: 2.5rem;
+  color: #666;
+  margin-top: 20px;
 `;

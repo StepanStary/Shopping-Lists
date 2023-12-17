@@ -16,19 +16,18 @@ const DarkModeToggle = ({ darkMode, toggleDarkMode }) => {
 export default DarkModeToggle;
 
   const Button = styled.button`
-    position: absolute;
-    top: 15px;
-    right: 10px;
+  text-align: center;
     border-radius: 5px;
-background-color: #2980b9;
-color: #fff;
-padding: 0.5rem;
-cursor: pointer;
-border: none;
-transition: background-color 0.3s ease;
-margin-left: 10px;
+    background-color: #2980b9;
+    color: #fff;
+    padding: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+    font-size: 1rem;
 
-&:hover {
-  background-color: #1a5276;
+    &:hover {
+     background-color: #1a5276;
 }
 `;

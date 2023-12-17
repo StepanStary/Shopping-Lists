@@ -24,4 +24,10 @@ router.post('/lists/:id/items', listController.addItemToList);
 // Smazání položky ze seznamu
 router.delete('/lists/:listId/items/:itemId', listController.deleteItemFromList);
 
+// Aktualizace stavu oznacených položek
+router.put('/lists/:id/checked-items', listController.updateCheckedItems);
+
+// Ziskání stavu oznacených položek pro konkrétní seznam
+router.get('/lists/:id/checked-items', listController.getCheckedItems);
+
 module.exports = router;

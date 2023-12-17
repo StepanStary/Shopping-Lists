@@ -29,7 +29,10 @@ i18n
             select: "Potvrdit",
             addList: "Přidat seznam",
             newList: "Nový seznam",
-            noLists: "Žádné seznamy nejsou k dispozici."
+            noLists: "Žádné seznamy nejsou k dispozici.",
+            selectProfileMessage: "Vyberte prosím profil.",
+            ShopListOverview:"Přehled nákupních seznamů.",
+            NumberItems:"Počet položek:" 
         }
       },
       en:{
@@ -40,7 +43,7 @@ i18n
           loading:"Loading..",
           ChoseLanguage:"Select language:",
           welcome: "Welcome,",
-          SelectProfile: "Please select a profile",
+          SelectProfile: "Please select a profile.",
           toggleText: "Switch to {{mode}} mode",
           createdBy: "  Created by: ",
           openDetails: "Open details",
@@ -53,7 +56,10 @@ i18n
           select: "Confirm",
           addList: "Add list",
           newList: "New list",
-          noLists: "No lists are available."
+          noLists: "No lists are available.",
+          selectProfileMessage: "Please select a profile.",
+          ShopListOverview:"Shopping lists overview.",
+          NumberItems:"Number of items:" 
           }
       }
     }

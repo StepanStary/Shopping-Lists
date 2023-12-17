@@ -96,6 +96,32 @@ const deleteItemFromList = (req, res) => {
   res.json({ message: 'Item deleted successfully' });
 };
 
+const updateCheckedItems = (req, res) => {
+  const listId = req.params.id;
+  const checkedItemsData = req.body;
+
+  const list = lists.find((list) => list._id === listId);
+
+  if (!list) {
+    return res.status(404).json({ error: 'List not found' });
+  }
+
+  list.checkedItems = { ...checkedItemsData };
+  res.json({ message: 'Checked items updated successfully' });
+};
+
+// Ziskání stavu oznacených položek pro konkrétní seznam
+const getCheckedItems = (req, res) => {
+  const listId = req.params.id;
+  const list = lists.find((list) => list._id === listId);
+
+  if (!list) {
+    return res.status(404).json({ error: 'List not found' });
+  }
+
+  res.json({ checkedItems: list.checkedItems || {} });
+};
+
 module.exports = {
   getAllLists,
   createList,
@@ -104,4 +130,6 @@ module.exports = {
   deleteList,
   addItemToList,
   deleteItemFromList,
+  updateCheckedItems,        
+  getCheckedItems,            
 };

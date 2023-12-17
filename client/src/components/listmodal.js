@@ -3,30 +3,74 @@ import Modal from 'react-modal';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-const ListModal = ({ isOpen, onRequestClose, listName, owner, listId,darkMode }) => {
+const ListModal = ({ isOpen, onRequestClose, listName, owner, listId, darkMode }) => {
   const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState('');
+  const [checkedItems, setCheckedItems] = useState({});
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await fetch(`http://localhost:3001/api/lists/${listId}/items`);
-        if (!response.ok) {
-          throw new Error('Chyba při načítání položek seznamu');
-        }
-
-        const data = await response.json();
-        setItems(data.items);
-      } catch (error) {
-        console.error(error.message);
+  const fetchItems = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/api/lists/${listId}/items`);
+      if (!response.ok) {
+        throw new Error('Chyba při načítání položek seznamu');
       }
-    };
 
+      const data = await response.json();
+      const initialCheckedItems = {};
+      data.items.forEach((item) => {
+        initialCheckedItems[item._id] = false;
+      });
+      setCheckedItems(initialCheckedItems);
+
+      setItems(data.items);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const fetchCheckedItems = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/api/lists/${listId}/checked-items`);
+      if (!response.ok) {
+        throw new Error('Chyba při načítání stavu oznacených položek');
+      }
+
+      const data = await response.json();
+      setCheckedItems(data.checkedItems);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const updateCheckedItems = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/api/lists/${listId}/checked-items`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(checkedItems),
+      });
+
+      if (!response.ok) {
+        throw new Error('Chyba při aktualizaci stavu oznacených položek');
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
     if (isOpen) {
       fetchItems();
+      fetchCheckedItems();
     }
   }, [isOpen, listId]);
+
+  useEffect(() => {
+    updateCheckedItems();
+  }, [checkedItems]);
 
   const handleInputChange = (e) => {
     setNewItem(e.target.value);
@@ -47,6 +91,10 @@ const ListModal = ({ isOpen, onRequestClose, listName, owner, listId,darkMode })
           throw new Error('Chyba při přidávání položky');
         }
         const newItemData = await response.json();
+        setCheckedItems((prevCheckedItems) => ({
+          ...prevCheckedItems,
+          [newItemData._id]: false,
+        }));
         setItems([...items, newItemData]);
         setNewItem('');
       } catch (error) {
@@ -89,12 +137,22 @@ const ListModal = ({ isOpen, onRequestClose, listName, owner, listId,darkMode })
       }}
     >
       <ModalHeader>
-      <h2 style={{ color: darkMode ? '#fff' : '#000' }}>{listName}</h2>
+        <h2 style={{ color: darkMode ? '#fff' : '#000' }}>{listName}</h2>
         <p style={{ color: darkMode ? '#fff' : '#000' }}>{t('createdBy')}{owner}</p>
       </ModalHeader>
       <ItemList>
         {items.map((item) => (
           <li key={item._id}>
+            <input
+              type="checkbox"
+              checked={checkedItems[item._id]}
+              onChange={() =>
+                setCheckedItems((prevCheckedItems) => ({
+                  ...prevCheckedItems,
+                  [item._id]: !prevCheckedItems[item._id],
+                }))
+              }
+            />
             <ItemText>{item.item}</ItemText>
             <ButtonDel onClick={() => handleDeleteItem(item._id)}>{t('deleteItem')}</ButtonDel>
           </li>

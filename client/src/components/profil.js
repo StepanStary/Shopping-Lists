@@ -22,7 +22,7 @@ const NameSelector = ({ onSelectName }) => {
 
   return (
     <Profil className='profile'>
-      <TextPr>{t('selectProfile')}</TextPr>
+      <p>{t('selectProfile')}</p>
       <Select value={selectedName} onChange={handleNameChange}>
         <option value="VyberProfil" disabled>{t('selectProfile')}</option>
         <option value="Honza">Honza</option>
@@ -37,14 +37,8 @@ const NameSelector = ({ onSelectName }) => {
 export default NameSelector;
 
 const Profil = styled.div`
-  position: absolute;
-  top: 15px;
-  left: 10px;
 `;
 
-const TextPr = styled.label`
-  color: #ffffff;
-`;
 
 const Button = styled.button`
   border-radius: 5px;
@@ -54,7 +48,7 @@ const Button = styled.button`
   cursor: pointer;
   border: none;
   transition: background-color 0.3s ease;
-  margin-left: 10px;
+  margin-left: 15px;
 
   &:hover {
     background-color: #1a5276;
@@ -62,5 +56,6 @@ const Button = styled.button`
 `;
 
 const Select = styled.select`
-  margin-left: 10px;
+  padding: 1rem;
+  border-radius: 10px;
 `
